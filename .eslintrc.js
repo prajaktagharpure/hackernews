@@ -1,22 +1,19 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
-  parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 7,
-    sourceType: "module"
+  'env': {
+    'browser': true,
+    'es6': true,
+    'mocha': true
   },
-  env: {
-    browser: true,
+  'extends': 'standard',
+  'globals': {
+    'Atomics': 'readonly',
+    'SharedArrayBuffer': 'readonly'
   },
-  extends: [
-  ],
-  // add your custom rules here
-  rules: {
-    // allow async-await
-    'generator-star-spacing': 'off',
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+  'parserOptions': {
+    'ecmaVersion': 2018,
+    'sourceType': 'module'
+  },
+  'rules': {
+    'no-debugger': 0
   }
 }

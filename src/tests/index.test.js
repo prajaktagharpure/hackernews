@@ -1,17 +1,10 @@
-import {expect} from "chai";
-import jsdom from "jsdom";
-import fs from "fs";
+import { expect } from 'chai'
 
-const { JSDOM } = jsdom;
-const { window } = new JSDOM();
-const { document } = (new JSDOM('')).window;
-global.document = document
-
-describe("Out first test", ()=>{
-  it("should pass", ()=>{
-    expect(true).to.equal(true);
-  });
-});
+describe('Out first test', () => {
+  it('should pass', () => {
+    expect(true).to.equal(true)
+  })
+})
 
 // describe("index.html", ()=>{
 //   it("should have h1 that says JS Boilerplate", (done)=>{
