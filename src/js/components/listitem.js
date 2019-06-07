@@ -31,10 +31,9 @@ export const ListItem = {
     if (state && state.topcomments) { topcomments = state.topcomments }
 
     if (topcomments) {
-      // document.getElementById("comment-" + state.index)= this.getTemplate({ topcomments, index: state.index })
+      let commentComponent = document.getElementById('comments-' + state.index)
+      commentComponent.innerHTML = ''
       topcomments.forEach((comment, index) => {
-        let commentComponent = document.getElementById('comments-' + state.index)
-        commentComponent.innerHTML = ''
         commentComponent.innerHTML += Comment.render({ comment, index })
       })
     }
