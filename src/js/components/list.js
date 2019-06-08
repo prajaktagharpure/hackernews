@@ -24,20 +24,22 @@ export const List = {
       model.topstories.forEach((topstory, index) => {
         listViewHtml += ListItem.render({ topstory, index })
       })
-      listViewHtml += `</ul>
-        ` + ShowMore.init(this.store, 'showmore_story')
+      listViewHtml += `</ul>`
+      if (model.showMore) { listViewHtml += ShowMore.init(this.store, 'showmore_story') }
 
       return listViewHtml
     }
   },
   render () {
     let state = this.store.getState()
+
     this.topstories = state.topstories || this.topstories
     this.topStoryIds = state.topStoryIds || this.topStoryIds
+    this.showMore = state.showMore
     let topstories
     if (state && state.topstories) { topstories = state.topstories }
     if (topstories) {
-      this.appComponent.innerHTML = this.getTemplate({ topstories })
+      this.appComponent.innerHTML = this.getTemplate({ topstories, showMore: this.showMore })
       this.afterRender()
     }
   },

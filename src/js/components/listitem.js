@@ -32,6 +32,7 @@ export const ListItem = {
     let state = this.store.getState(); let topcomments
     this.topcomments = state.topcomments
     this.commentsIds = state.commentsIds
+    this.showMore = state.showMore
 
     if (state && state.topcomments) { topcomments = state.topcomments }
 
@@ -41,7 +42,7 @@ export const ListItem = {
       topcomments.forEach((comment, index) => {
         commentComponent.innerHTML += Comment.render({ comment, index })
       })
-      commentComponent.innerHTML += ShowMore.init(this.store, 'showmore_comments_' + state.index)
+      if (this.showMore) { commentComponent.innerHTML += ShowMore.init(this.store, 'showmore_comments_' + state.index) }
     }
     this.afterRender()
   },
