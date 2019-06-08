@@ -1,6 +1,6 @@
 #Hackernews
 
-Hackernews app pulls the top stories from the Hackernews API and display them. Clicking on a news opens up the comments. (first 20)
+Hackernews app pulls the top stories from the Hackernews API and display them. Clicking on a news opens up the comments. (first 20) On click of "Show More" for stories and comments, loads next 20 comments.
 
 ** JS Standard boilerplate!
 
@@ -17,5 +17,4 @@ Keywords
 #VanillaJavascript #Webpack #ExressJS #NODEJS #npm #eslint #REDUX #materialisecss
 
 TODOS
--- Show More Feature For stories and comments (Currently first 20 are displayed) *Work In Progress*
 -- Unit testing with mocha! 

@@ -1,5 +1,7 @@
 import { Comment } from './comment'
+import { ShowMore } from './showmore'
 import U from '../core/Util'
+
 export const ListItem = {
   init (store = {}, model) {
     this.store = store
@@ -17,6 +19,7 @@ export const ListItem = {
       listItemView += Comment.init(this.store)
 
       listItemView += `  </div>
+      
        </li>
       `
       return listItemView
@@ -27,6 +30,8 @@ export const ListItem = {
       return this.getTemplate(model)
     }
     let state = this.store.getState(); let topcomments
+    this.topcomments = state.topcomments
+    this.commentsIds = state.commentsIds
 
     if (state && state.topcomments) { topcomments = state.topcomments }
 
@@ -36,6 +41,12 @@ export const ListItem = {
       topcomments.forEach((comment, index) => {
         commentComponent.innerHTML += Comment.render({ comment, index })
       })
+      commentComponent.innerHTML += ShowMore.init(this.store, 'showmore_comments_' + state.index)
     }
+    this.afterRender()
+  },
+  afterRender () {
+    Comment.afterRender()
+    ShowMore.afterRender()
   }
 }

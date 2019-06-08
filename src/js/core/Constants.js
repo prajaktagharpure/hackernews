@@ -7,6 +7,11 @@ export default {
   types: {
     LOAD_TOP_STORIES_SUCCESS: 'loadTopStoriesSuccess',
     ADD_TOP_STORY_SUCCESS: 'addTopStorySuccess',
-    LOAD_STORY_COMMENTS_SUCCESS: 'loadStoryCommentsSuccess'
+    LOAD_STORY_COMMENTS_SUCCESS: 'loadStoryCommentsSuccess',
+    LOAD_MORE_ITEMS_SUCCESS: 'loadMoreItemsSuccess'
+  },
+  loadmoretype: {
+    STORY: 'story',
+    COMMENTS: 'comments'
   }
 }

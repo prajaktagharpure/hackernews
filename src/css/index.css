@@ -22,3 +22,5 @@ h1, h2, h3, h4, h5, p {
 }
 
 .btn, .btn-large, .btn-small{background: #ff6600}
+.btn:hover, .btn-large:hover, .btn-small:hover{background: #ff6600}
+blockquote{    border-left: 5px solid #ff6600;}

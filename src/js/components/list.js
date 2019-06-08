@@ -1,4 +1,5 @@
 import { ListItem } from './listitem'
+import { ShowMore } from './showmore'
 import U from '../core/Util'
 import A from '../actions/actions'
 import M from 'materialize-css'
@@ -24,15 +25,16 @@ export const List = {
         listViewHtml += ListItem.render({ topstory, index })
       })
       listViewHtml += `</ul>
-        <a class="waves-effect waves-light btn">Show More</a>
-        `
+        ` + ShowMore.init(this.store, 'showmore_story')
+
       return listViewHtml
     }
   },
   render () {
     let state = this.store.getState()
     this.topstories = state.topstories || this.topstories
-    let topstories, topcomments
+    this.topStoryIds = state.topStoryIds || this.topStoryIds
+    let topstories
     if (state && state.topstories) { topstories = state.topstories }
     if (topstories) {
       this.appComponent.innerHTML = this.getTemplate({ topstories })
@@ -57,5 +59,7 @@ export const List = {
         }
       })
     })
+
+    ShowMore.afterRender()
   }
 }
