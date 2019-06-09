@@ -30,13 +30,15 @@ export default {
   },
   loadStoryComments (store, topstory, index, count = 20) {
     let commentsIds = topstory.kids
-    let topcomments = commentsIds.slice(0, count)
-    let showMore = U.ItemUtil.showMore(topcomments, commentsIds)
+    if (commentsIds.length) {
+      let topcomments = commentsIds.slice(0, count)
+      let showMore = U.ItemUtil.showMore(topcomments, commentsIds)
 
-    let promises = this.getItemsByIDs(topcomments)
-    Promise.all(promises).then((topcomments) => {
-      store.dispatch(this.loadStoryCommentsSuccess({ topcomments, index, commentsIds, showMore }))
-    })
+      let promises = this.getItemsByIDs(topcomments)
+      Promise.all(promises).then((topcomments) => {
+        store.dispatch(this.loadStoryCommentsSuccess({ topcomments, index, commentsIds, showMore }))
+      })
+    }
   },
   loadStoryCommentsSuccess (comments) {
     return { type: C.types.LOAD_STORY_COMMENTS_SUCCESS, comments }

@@ -15,7 +15,7 @@ export const Comment = {
         </blockquote>
       `
     }
-    return `<span>Comments loading </span>`
+    return `<span>Comments sections </span>`
   },
   render (model) {
     return this.getTemplate(model)
