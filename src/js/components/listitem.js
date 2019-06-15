@@ -29,22 +29,26 @@ export const ListItem = {
     if (model && model.topstory) {
       return this.getTemplate(model)
     }
-    let state = this.store.getState(); let topcomments
-    this.topcomments = state.topcomments
-    this.commentsIds = state.commentsIds
-    this.showMore = state.showMore
+    let state = this.store.getState().topCommentsReducer
+    if (state && state.length) {
+      let topcomments
+      let topcommentConfig = U.ItemUtil.getCurrentComment(state)
+      this.topcomments = topcommentConfig.topcomments
+      this.commentsIds = topcommentConfig.commentsIds
+      this.showMore = topcommentConfig.showMore
 
-    if (state && state.topcomments) { topcomments = state.topcomments }
+      if (topcommentConfig && topcommentConfig.topcomments) { topcomments = topcommentConfig.topcomments }
 
-    if (topcomments) {
-      let commentComponent = document.getElementById('comments-' + state.index)
-      commentComponent.innerHTML = ''
-      topcomments.forEach((comment, index) => {
-        commentComponent.innerHTML += Comment.render({ comment, index })
-      })
-      if (this.showMore) { commentComponent.innerHTML += ShowMore.init(this.store, 'showmore_comments_' + state.index) }
+      if (topcomments) {
+        let commentComponent = document.getElementById('comments-' + topcommentConfig.index)
+        commentComponent.innerHTML = ''
+        topcomments.forEach((comment, index) => {
+          commentComponent.innerHTML += Comment.render({ comment, index })
+        })
+        if (this.showMore) { commentComponent.innerHTML += ShowMore.init(this.store, 'showmore_comments_' + topcommentConfig.index) }
+      }
+      this.afterRender()
     }
-    this.afterRender()
   },
   afterRender () {
     Comment.afterRender()

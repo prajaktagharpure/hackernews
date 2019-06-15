@@ -30,13 +30,14 @@ export default {
   },
   loadStoryComments (store, topstory, index, count = 20) {
     let commentsIds = topstory.kids
-    if (commentsIds.length) {
+    if (commentsIds && commentsIds.length) {
       let topcomments = commentsIds.slice(0, count)
       let showMore = U.ItemUtil.showMore(topcomments, commentsIds)
+      let current = true
 
       let promises = this.getItemsByIDs(topcomments)
       Promise.all(promises).then((topcomments) => {
-        store.dispatch(this.loadStoryCommentsSuccess({ topcomments, index, commentsIds, showMore }))
+        store.dispatch(this.loadStoryCommentsSuccess({ topcomments, index, commentsIds, showMore, current }))
       })
     }
   },
@@ -51,13 +52,13 @@ export default {
 
     Promise.all(promises).then((newitems) => {
       if (type === C.loadmoretype.STORY) {
-        store.dispatch(this.loadStoryCommentsSuccess({ topstories: items.concat(newitems), topStoryIds: ids, type, showMore }))
+        store.dispatch(this.loadMoreItemSuccess({ topstories: newitems, topStoryIds: ids, type, showMore }))
       } else {
-        store.dispatch(this.loadStoryCommentsSuccess({ topcomments: items.concat(newitems), commentsIds: ids, type, index, showMore }))
+        store.dispatch(this.loadMoreItemSuccess({ topcomments: newitems, commentsIds: ids, type, index, showMore, current: true }))
       }
     })
   },
-  loadStoryCommentsSucces (data) {
+  loadMoreItemSuccess (data) {
     return { type: C.types.LOAD_MORE_ITEMS_SUCCESS, data }
   }
 }

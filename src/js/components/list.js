@@ -2,7 +2,6 @@ import { ListItem } from './listitem'
 import { ShowMore } from './showmore'
 import U from '../core/Util'
 import A from '../actions/actions'
-import M from 'materialize-css'
 
 export const List = {
 
@@ -31,24 +30,28 @@ export const List = {
     }
   },
   render () {
-    let state = this.store.getState()
+    let state = this.store.getState().topStoriesReducer
 
-    this.topstories = state.topstories || this.topstories
-    this.topStoryIds = state.topStoryIds || this.topStoryIds
-    this.showMore = state.showMore
-    let topstories
-    if (state && state.topstories) { topstories = state.topstories }
-    if (topstories) {
-      this.appComponent.innerHTML = this.getTemplate({ topstories, showMore: this.showMore })
-      this.afterRender()
+    if (this.topstories !== state.topstories) {
+      this.topstories = state.topstories || this.topstories
+      this.topStoryIds = state.topStoryIds || this.topStoryIds
+      this.showMore = state.showMore
+      let topstories
+      if (state && state.topstories) { topstories = state.topstories }
+      if (topstories) {
+        this.appComponent.innerHTML = this.getTemplate({ topstories, showMore: this.showMore })
+        this.afterRender()
+      }
     }
   },
   afterRender () {
     // Initialising collapsible in materialise css
     var elem = document.querySelector('.collapsible.expandable')
+    /* eslint-disable */
     M.Collapsible.init(elem, {
       accordion: false
     })
+    /* eslint-enable */
     // click handlers
     let listObj = this
     let listHeaders = document.getElementsByClassName('listitem-header')

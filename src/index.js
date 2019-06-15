@@ -5,7 +5,7 @@ import { App } from './js/app'
 import configureStore from './js/store/index'
 
 // document.getElementById("app").innerHTML = "Boilerplate"
-const store = configureStore({})
+const store = configureStore()
 App.init(store)
 
 // Hot reload
