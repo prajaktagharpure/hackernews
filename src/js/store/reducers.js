@@ -32,6 +32,7 @@ function topCommentsReducer (state = initialState.topcomments, action) {
         })
         return newState
       }
+      return state
     case C.types.LOAD_MORE_ITEMS_SUCCESS:
       if (action.data.type === C.loadmoretype.COMMENTS) {
         let newCState = [...state]
@@ -40,6 +41,7 @@ function topCommentsReducer (state = initialState.topcomments, action) {
         newCState[0].showMore = action.data.showMore
         newCState[0].commentsIds = action.data.commentsIds
       }
+      return state
     default:
       return state
   }

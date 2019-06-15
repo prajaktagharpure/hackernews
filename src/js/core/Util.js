@@ -10,8 +10,8 @@ export default {
   },
 
   ItemUtil: {
-    showMore (topitems, items) {
-      return topitems.length === 20 && items.length > 20
+    showMore (topitems, items, count = 20) {
+      return topitems.length >= count && topitems.length < items.length && items.length > count
     },
     getCurrentComment (arr) {
       return arr.filter(item => item.current)[0]
